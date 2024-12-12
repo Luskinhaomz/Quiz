@@ -18,11 +18,17 @@ document.getElementById('submit-btn').addEventListener('click', function () {
         }
     }
 
-    // Checar se todas as respostas foram respondidas
+    // Validação
     const totalAnswers = Object.values(scores).reduce((sum, score) => sum + score, 0);
     if (totalAnswers < 10) {
         alert("Por favor, responda todas as perguntas.");
         return;
+    }
+
+    // Porcentagens
+    const percentages = {};
+    for (const [key, value] of Object.entries(scores)) {
+        percentages[key] = ((value / totalAnswers) * 100).toFixed(2);
     }
 
     // Identifica os personagens com maior pontuação
@@ -30,6 +36,6 @@ document.getElementById('submit-btn').addEventListener('click', function () {
     const topCharacters = Object.keys(scores).filter(key => scores[key] === maxScore);
 
     // Redireciona para a página de resultados com os dados
-    const queryString = `results=${encodeURIComponent(JSON.stringify(topCharacters))}`;
+    const queryString = `results=${encodeURIComponent(JSON.stringify(topCharacters))}&percentages=${encodeURIComponent(JSON.stringify(percentages))}`;
     window.location.href = `result.html?${queryString}`;
 });
