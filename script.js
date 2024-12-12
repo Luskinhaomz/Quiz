@@ -2,13 +2,13 @@ document.getElementById('submit-btn').addEventListener('click', function () {
     const form = document.getElementById('quiz-form');
     const answers = new FormData(form);
     const scores = {
-        a: 0, // Patrick
-        b: 0, // Lula Molusco
-        c: 0, // Sandy
-        d: 0, // Sr. Siriguejo
-        e: 0, // Plankton
-        f: 0, // Gary
-        g: 0, // Bob Esponja
+        a: 0, //Patrick
+        b: 0, //Lula Molusco
+        c: 0, //Sandy
+        d: 0, //Sr. Siriguejo
+        e: 0, //Plankton
+        f: 0, //Gary
+        g: 0, //Bob Esponja
     };
 
     // Soma os pontos

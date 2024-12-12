@@ -3,8 +3,8 @@ body {
     font-family: 'Comic Sans MS', cursive, sans-serif;
     background: linear-gradient(to bottom, #87CEEB, #1E90FF);
     color: #333;
-    margin: 0;
     padding: 0;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
