@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado do Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1E90FF;
+            color: #FFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .character {
+            margin-bottom: 20px;
+        }
+        .character img {
+            max-width: 200px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .character h2 {
+            font-size: 2em;
+            margin: 10px 0;
+        }
+        .character p {
+            font-size: 1.2em;
+        }
+        button {
+            background: #FF4500;
+            color: #FFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background: #FF6347;
+        }
+    </style>
+</head>
+<body>
+    <div id="result-container">
+        <!-- Resultados serão exibidos aqui -->
+    </div>
+    <button onclick="window.location.href='index.html'">Refazer o Quiz</button>
+    <script>
+        // Captura os dados da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const results = JSON.parse(urlParams.get('results'));
+
+        // Verifica se os dados são válidos
+        if (!results || results.length === 0) {
+            document.getElementById('result-container').innerHTML = `
+                <h1>Erro: Nenhum resultado encontrado.</h1>
+            `;
+        } else {
+            // Dados de cada personagem
+            const characterData = {
+                a: { name: "Patrick", image: "patrick.jpeg", description: "Você é descontraído e adora relaxar com os amigos!" },
+                b: { name: "Lula Molusco", image: "lula-molusco.jfif", description: "Você é sério, perfeccionista e tem um lado artístico." },
+                c: { name: "Sandy", image: "sandy.jfif", description: "Você é aventureiro e inteligente, sempre pronto para desafios!" },
+                d: { name: "Sr. Siriguejo", image: "siriguejo.jfif", description: "Você é ambicioso e sabe como valorizar o dinheiro!" },
+                e: { name: "Plankton", image: "plankton.jfif", description: "Você é persistente e nunca desiste de seus objetivos." },
+                f: { name: "Gary", image: "gary.jfif", description: "Você é leal e um pouco introvertido, mas muito sábio!" },
+                g: { name: "Bob Esponja", image: "bob-esponja.png", description: "Você é alegre, otimista e contagia todos ao seu redor!" },
+            };
+
+            // Gera o conteúdo para cada personagem empatado
+            const container = document.getElementById('result-container');
+            results.forEach(key => {
+                const { name, image, description } = characterData[key];
+                const div = document.createElement('div');
+                div.classList.add('character');
+                div.innerHTML = `
+                    <img src="images/${image}" alt="${name}">
+                    <h2>${name}</h2>
+                    <p>${description}</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>
