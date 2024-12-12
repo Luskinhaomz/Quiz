@@ -18,7 +18,7 @@ document.getElementById('submit-btn').addEventListener('click', function () {
         }
     }
 
-    // Validação
+    // Checar se todas as respostas foram respondidas
     const totalAnswers = Object.values(scores).reduce((sum, score) => sum + score, 0);
     if (totalAnswers < 10) {
         alert("Por favor, responda todas as perguntas.");
